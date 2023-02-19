@@ -1,0 +1,8 @@
+node_modules
+*.log
+dist
+dev-dist
+.output
+.nuxt
+.env
+.idea/
