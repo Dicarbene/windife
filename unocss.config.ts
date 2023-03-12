@@ -1,34 +1,38 @@
 import {
-  defineConfig,
-  presetAttributify,
-  presetIcons,
-  presetTypography,
-  presetUno,
-  presetWebFonts,
-  transformerDirectives,
+  defineConfig, presetAttributify, presetIcons, presetUno, presetWebFonts, transformerDirectives,
   transformerVariantGroup,
 } from 'unocss'
 
 export default defineConfig({
-  shortcuts: [
-    ['btn', 'px-4 py-1 rounded inline-block bg-teal-600 text-white cursor-pointer hover:bg-teal-700 disabled:cursor-default disabled:bg-gray-600 disabled:opacity-50'],
-    ['icon-btn', 'inline-block cursor-pointer select-none opacity-75 transition duration-200 ease-in-out hover:opacity-100 hover:text-teal-600'],
-  ],
   presets: [
     presetUno(),
     presetAttributify(),
-    presetIcons({
-      scale: 1.2,
-    }),
-    presetTypography(),
+    presetIcons(),
     presetWebFonts({
+      provider: 'google', // default provider
       fonts: {
-        sans: 'DM Sans',
-        serif: 'DM Serif Display',
-        mono: 'DM Mono',
+        // these will extend the default theme
+        sans: 'Inter',
       },
     }),
   ],
+  shortcuts: [
+    ['btn-primary', 'pt-6px pb-7px px-14px shadow-sm text-white cursor-pointer rounded bg-button-primary hover:bg-button-primary-hover transition-all text-normal font-sans font-700'],
+    ['btn-round', 'box-border transition-all self-center b-rounded-50 cursor-pointer hover:b-15 hover:b-teal'],
+    ['btn-secondary', 'px-2.5 py-1 hover:bg-gray-100 transition-all rounded font-600 text-sm font-sans'],
+  ],
+  theme: {
+    colors: {
+      primary: '#e16259', // notion primary red
+      buttonPrimary: '#121212', // primary
+      buttonPrimaryHover: '#333333', // when hover ref-500
+    },
+    textColor: {
+      primary: '#121212',
+      highlight: '#ffed4a',
+      danger: '#e3342f',
+    },
+  },
   transformers: [
     transformerDirectives(),
     transformerVariantGroup(),

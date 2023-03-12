@@ -8,6 +8,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@nuxtjs/color-mode',
     '@vite-pwa/nuxt',
+    '@formkit/nuxt',
   ],
   experimental: {
     // when using generate, payload js assets included in sw precache manifest
@@ -50,4 +51,14 @@ export default defineNuxtConfig({
     },
   },
   pwa,
+  unocss: {
+    // presets
+    uno: true, // enabled `@unocss/preset-uno`
+    icons: true, // enabled `@unocss/preset-icons`
+    attributify: true, // enabled `@unocss/preset-attributify`,
+
+    // core options
+    shortcuts: [],
+    rules: [],
+  },
 })
