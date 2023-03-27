@@ -16,5 +16,6 @@
     "nuxtjs",
     "pinia",
     "Windife"
-  ]
+  ],
+  "prisma.fileWatcher": true
 }

@@ -1,26 +1,26 @@
 <script setup>
 import { useAutoAnimate } from '@formkit/auto-animate/vue'
 
-const [RegisterModal] = useAutoAnimate()
+const [LoginModal] = useAutoAnimate()
 const submit = () => {
   // alert('Success!')
 }
 const username = ref('')
 const password = ref('')
+const passwordValidation = ref('')
 </script>
 
 <template>
   <div>
     <div w-20 h-20 mt-20 />
-    <div ref="RegisterModal" p-2 w-full border-rd-2 max-w-80 mx-auto block class="form">
+    <div ref="LoginModal" p-2 w-full border-rd-2 max-w-80 mx-auto block class="form">
       <FormKit type="form" :submit-attrs="{ inputClass: 'mt-5 btn-primary' }" @submit="submit">
         <FormKit
           v-model="username" label-class="font-bold text-lg" help-class="text-sm text-gray"
           input-class="b-rd-md p-1.5 b-1 b-black" type="text" label="Username" help="Pick a new username."
           validation="required|length:5,15|matches:/[0-9]/" validation-visibility="dirty" :validation-messages="{
             matches: 'Must include at least one number',
-          }"
-          message-class="text-primary"
+          }" message-class="text-primary"
         />
         <FormKit
           v-model="password" label-class="font-bold text-lg" help-class="text-sm text-gray"
@@ -28,8 +28,15 @@ const password = ref('')
           help="Pick a new password." validation="required|length:5,15|matches:/[0-9]/" validation-visibility="dirty"
           :validation-messages="{
             matches: 'Must include at least one number',
+          }" message-class="text-primary"
+        />
+        <FormKit
+          v-model="passwordValidation" label-class="font-bold text-lg" help-class="text-sm text-gray"
+          input-class="b-rd-md p-1.5 b-1 b-black" message-class="" type="password" name="password_confirm"
+          label="Confirm password" help="Confirm your password." validation="required|confirm"
+          validation-label="password confirmation" validation-visibility="dirty" :validation-messages="{
+            matches: 'Must include at least one number',
           }"
-          message-class="text-primary"
         />
       </FormKit>
     </div>
@@ -55,7 +62,7 @@ const password = ref('')
 }
 
 .heading {
-  color: black;
+  color: #121212;
   padding-bottom: 2em;
   text-align: center;
   font-weight: bold;

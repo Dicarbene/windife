@@ -42,7 +42,9 @@
           </button>
           <span mr-3 text-gray-4> | </span>
           <button class="btn-primary inline text-sm">
-            Try Windife free
+            <NuxtLink to="/register">
+              Try Windife free
+            </NuxtLink>
           </button>
         </div>
       </div>

@@ -1,44 +1,45 @@
-//#import "template.typ": *
+#import "template.typ": *
 
 // Take a look at the file `template.typ` in the file panel
 // to customize this template and discover how it works.
-/* #show: project.with(
-  title: "testing",
+#show: project.with(
+  title: "《基于Nuxt与flutter的多端可拓展个人知识软件“云舒”的设计与实现》第三次汇报",
   authors: (
-    (name: "dicarbene", email: "palytoxin@foxmail.com"),
+    (name: "万旭杰", email: "github@Dicarbene"),
   ),
-) */
+)
 
 // We generated the example code below so you can see how
 // your document will look. Go ahead and replace it with
 // your own content!
 
-= Introduction
-testing typst
+= 提要
+== 上周完成任务
+- 前端基本页面构建完成（如文档，登录注册等）
+- 数据库结构设计完成（目前完成了基本的设计）
+- 引入“云舒”开源编辑器（根据(blocksuite)[https://blocksuite-toeverything.vercel.app/?init] fork）
+- 完成移动端项目结构构建
+== 上周预计完成任务
+- 完成前端状态管理与后端协同, 初步功能实现展示
+- 封装前端ui库并发布
+- 修改完善文档编辑器, 并进一步完善项目设计
+- 部署至服务器
 
-== In this paper
-let us try to introducing some notes taking app using typst online app lol.
+= 本周任务完成情况
 
-= Main theme
+== 完成前端状态管理与后端协同, 初步功能实现展示
 
-== Markdown
-- Typora: 收费 不好用
-- Obsidian: 好用的咧（完杀typora）（有文档库管理&知识网络双向链接）
+== 封装前端ui库并发布
+#link("https://www.npmjs.com/package/@dicarbene/nuxt3-editorjs?activeTab=readme")
+#figure(
+  image("public/editorjs-module.png", width: 80%),
+  caption: [
+    "云舒编辑器模块化",
+  ],
+)
 
-== LaTex
-- tex live editor: 难用的咧
-- overleaf: 在线编译慢了点，还有编译时长收费限制，但还算好用
-- texmacs: 所见即所得的latex有点厉害，但是好像还是有不同，and界面ui稍显老旧
+== 修改完善文档编辑器, 并进一步完善项目设计
 
-== random shit
-- logseq: 有人用，但不多
-- notion: 钱越多约好用（bushi
+== 部署至服务器
 
-== 这个typst
-语法大概是markdown+rust的杂糅
-
-但是数学公式是自己的一套(感觉还行但是有待观察，目前有bug) (怎么图片插不了啊救命)
-
-导出pdf飞快，所见即所得的编辑器
-
-目前没有本地编辑器太败笔乐，只能在线使用编译捏，但是速度还是很快woo
+功能暂不完善，并未部署至服务器，目前仍然处于`local development`阶段
