@@ -26,11 +26,12 @@ export default defineConfig({
       primary: '#e16259', // notion primary red
       buttonPrimary: '#121212', // primary
       buttonPrimaryHover: '#333333', // when hover ref-500
+      primaryBackgroundColor: '#f6f5f4', // background color
     },
     textColor: {
-      primary: '#121212',
-      highlight: '#ffed4a',
-      danger: '#e3342f',
+      primary: '#121212', // primary
+      highlight: '#ffed4a', // highlight
+      danger: '#e3342f', // danger
     },
   },
   transformers: [

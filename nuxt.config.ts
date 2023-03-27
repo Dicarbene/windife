@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     '@vite-pwa/nuxt',
     '@formkit/nuxt',
+    '@dicarbene/nuxt3-editorjs',
   ],
   experimental: {
     // when using generate, payload js assets included in sw precache manifest
@@ -49,6 +50,7 @@ export default defineNuxtConfig({
         { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
       ],
     },
+    pageTransition: { name: 'page', mode: 'out-in' },
   },
   pwa,
   unocss: {
@@ -60,5 +62,10 @@ export default defineNuxtConfig({
     // core options
     shortcuts: [],
     rules: [],
+  },
+  vite: {
+    optimizeDeps: {
+      include: ['@editorjs/editorjs', '@editorjs/header', '@editorjs/list'],
+    },
   },
 })
