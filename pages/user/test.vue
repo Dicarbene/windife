@@ -104,6 +104,6 @@ const save = () => {
 
 <template>
   <ClientOnly>
-    <EditorClient v-model="dat" />
+    <EditorClient v-model="dat" mt-20 />
   </ClientOnly>
 </template>

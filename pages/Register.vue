@@ -2,12 +2,26 @@
 import { useAutoAnimate } from '@formkit/auto-animate/vue'
 
 const [LoginModal] = useAutoAnimate()
-const submit = () => {
-  // alert('Success!')
-}
 const username = ref('')
 const password = ref('')
 const passwordValidation = ref('')
+const data = ref()
+const pending = ref()
+const submit = () => {
+  useLazyFetch('/api/register', {
+    method: 'POST',
+    body: {
+      username: username.value,
+      password: password.value,
+    },
+    onResponse({ request, response, options }) {
+    // Process the response data
+      return response._data
+    },
+  })
+}
+watch(data, () => {
+})
 </script>
 
 <template>
@@ -18,17 +32,15 @@ const passwordValidation = ref('')
         <FormKit
           v-model="username" label-class="font-bold text-lg" help-class="text-sm text-gray"
           input-class="b-rd-md p-1.5 b-1 b-black" type="text" label="Username" help="Pick a new username."
-          validation="required|length:5,15|matches:/[0-9]/" validation-visibility="dirty" :validation-messages="{
+          validation="required|length:5,15" validation-visibility="dirty" :validation-messages="{
             matches: 'Must include at least one number',
           }" message-class="text-primary"
         />
         <FormKit
           v-model="password" label-class="font-bold text-lg" help-class="text-sm text-gray"
           input-class="b-rd-md p-1.5 b-1 b-black" type="password" label="Password" name="password"
-          help="Pick a new password." validation="required|length:5,15|matches:/[0-9]/" validation-visibility="dirty"
-          :validation-messages="{
-            matches: 'Must include at least one number',
-          }" message-class="text-primary"
+          help="Pick a new password." validation="required|length:5,15" validation-visibility="dirty"
+          message-class="text-primary"
         />
         <FormKit
           v-model="passwordValidation" label-class="font-bold text-lg" help-class="text-sm text-gray"
@@ -39,6 +51,14 @@ const passwordValidation = ref('')
           }"
         />
       </FormKit>
+    </div>
+    <div w-20 h-20 mt-10>
+      <div v-if="pending">
+        Loading ...
+      </div>
+      <div v-else>
+        {{ data }}
+      </div>
     </div>
   </div>
 </template>
