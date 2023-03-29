@@ -6,21 +6,28 @@ const username = ref('')
 const password = ref('')
 const passwordValidation = ref('')
 const data = ref()
-const pending = ref()
+const pending = ref(true)
+const UserStatus = useUserStore()
+
 const submit = () => {
   useLazyFetch('/api/register', {
     method: 'POST',
     body: {
-      username: username.value,
+      name: username.value,
       password: password.value,
     },
-    onResponse({ request, response, options }) {
-    // Process the response data
-      return response._data
+    async onResponse({ request, response, options }) {
+      // Process the response data
+      data.value = response._data
+      UserStatus.value = response._data
+      pending.value = false
+      await navigateTo('/user/test')
     },
   })
 }
-watch(data, () => {
+watch(UserStatus.value, async () => {
+  if (UserStatus.value)
+    await navigateTo('/user/test')
 })
 </script>
 
@@ -44,21 +51,13 @@ watch(data, () => {
         />
         <FormKit
           v-model="passwordValidation" label-class="font-bold text-lg" help-class="text-sm text-gray"
-          input-class="b-rd-md p-1.5 b-1 b-black" message-class="" type="password" name="password_confirm"
+          input-class="b-rd-md p-1.5 b-1 b-black" message-class="text-primary" type="password" name="password_confirm"
           label="Confirm password" help="Confirm your password." validation="required|confirm"
           validation-label="password confirmation" validation-visibility="dirty" :validation-messages="{
             matches: 'Must include at least one number',
           }"
         />
       </FormKit>
-    </div>
-    <div w-20 h-20 mt-10>
-      <div v-if="pending">
-        Loading ...
-      </div>
-      <div v-else>
-        {{ data }}
-      </div>
     </div>
   </div>
 </template>

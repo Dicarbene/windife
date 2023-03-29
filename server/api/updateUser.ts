@@ -2,15 +2,15 @@ import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
-type UserObject {
+interface UserObject {
   name: string
   password: string
 }
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
   const userObj: UserObject = body
-  const response = await prisma.user.findFirst({
-    where: {
+  const response = await prisma.user.create({
+    data: {
       name: userObj.name,
       password: userObj.password,
     },

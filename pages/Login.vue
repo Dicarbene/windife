@@ -2,11 +2,32 @@
 import { useAutoAnimate } from '@formkit/auto-animate/vue'
 
 const [RegisterModal] = useAutoAnimate()
-const submit = () => {
-  // alert('Success!')
-}
 const username = ref('')
 const password = ref('')
+
+const data = ref()
+const pending = ref(true)
+const UserStatus = useUserStore()
+const submit = () => {
+  useLazyFetch('/api/login', {
+    method: 'POST',
+    body: {
+      name: username.value,
+      password: password.value,
+    },
+    async onResponse({ request, response, options }) {
+      // Process the response data
+      data.value = response._data
+      UserStatus.value = response._data
+      pending.value = false
+      await navigateTo('/user/test')
+    },
+  })
+}
+watch(UserStatus.value, async () => {
+  if (UserStatus.value != null)
+    await navigateTo('/user/test')
+})
 </script>
 
 <template>
@@ -17,10 +38,9 @@ const password = ref('')
         <FormKit
           v-model="username" label-class="font-bold text-lg" help-class="text-sm text-gray"
           input-class="b-rd-md p-1.5 b-1 b-black" type="text" label="Username" help="Pick a new username."
-          validation="required|length:5,15|matches:/[0-9]/" validation-visibility="dirty" :validation-messages="{
+          validation="required|length:5,15|" validation-visibility="dirty" :validation-messages="{
             matches: 'Must include at least one number',
-          }"
-          message-class="text-primary"
+          }" message-class="text-primary"
         />
         <FormKit
           v-model="password" label-class="font-bold text-lg" help-class="text-sm text-gray"
@@ -28,8 +48,7 @@ const password = ref('')
           help="Pick a new password." validation="required|length:5,15|matches:/[0-9]/" validation-visibility="dirty"
           :validation-messages="{
             matches: 'Must include at least one number',
-          }"
-          message-class="text-primary"
+          }" message-class="text-primary"
         />
       </FormKit>
     </div>
