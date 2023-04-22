@@ -97,19 +97,15 @@ const default_data = {
   version: '2.25.0',
 }
 const dat = ref(default_data)
-const show = ref(false)
 const save = () => {
   // console.log(foo)
 }
-onMounted(() => {
-  show.value = true
-})
 </script>
 
 <template>
   <div>
     <ClientOnly>
-      <EditorClient v-if="show" v-model="dat" mt-20 ml-65 w-auto />
+      <EditorClient v-model="dat" mt-20 ml-65 w-auto />
     </ClientOnly>
   </div>
 </template>

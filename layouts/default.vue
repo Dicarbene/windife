@@ -1,23 +1,59 @@
 <script lang="ts" setup>
 const userStore = useUserStore()
+const childHover = ref(false)
+const styleParent = 'bg-gray-50'
 </script>
 
 <template>
-  <header v-if="userStore != null" fixed left-2 top-1 grid grid-cols-1 grid-rows-10 w-50 h-100vh b-r b-gray>
-    <div rounded btn-primary hover:bg-gray-200 bg-white text-black text-center h-10 p-2 text-lg>
-      <span rounded bg-gray-200 w-6 h-6 inline-block left-0 absolute>{{ userStore?.name.slice(0, 1).toUpperCase() }}</span>{{ userStore?.name }}
-    </div>
-    <div btn-secondary>
-      <div i-carbon-search />Search
-    </div>
-    <div btn-secondary>
-      recipes
-    </div>
-    <div btn-secondary>
-      recipes
-    </div>
-    <div btn-secondary>
-      recipes
+  <header v-if="userStore != null" fixed top-0 w-58 h-100vh b-r bg-gray-50>
+    <button
+      relative flex justify-between gap-2 rounded btn-primary hover:bg-gray-200 bg-gray-50 text-black text-center h-10 w-full
+      font-600 overflow-auto :style="{ 'background-color': childHover ? 'rgba(229, 231, 235)' : '' }"
+    >
+      <span rounded bg-gray-300 w-6 h-6 inline-block left-2 text-gray-500>{{ userStore?.name.slice(0, 1).toUpperCase()
+      }}</span>{{ userStore?.name }}
+      <div inline i-ri-expand-up-down-line w-4 h-6 bg-gray top-1 />
+      <button flex self-end justify-center items-center btn-round w-7 h-7 hover:bg-gray-300 transition-all @mouseover="() => { childHover = true }" @mouseout="() => { childHover = false }">
+        <div i-ri-edit-box-line />
+      </button>
+    </button>
+
+    <div class="grid-rows-[repeat(10,1.5rem)]" mt-2 grid gap-0.5 px-2 text-gray-8>
+      <div btn-secondary flex gap-2 h-6 text-center font-550 style="line-height: 0.9rem;">
+        <div i-ri-search-2-line top-0.5 />Search
+      </div>
+      <div btn-secondary flex gap-2 h-6 text-center font-550 style="line-height: 0.9rem;">
+        <div i-ri-time-line />Update
+      </div>
+      <div btn-secondary flex gap-2 h-6 text-center font-550 style="line-height: 0.9rem;">
+        <div i-ri-settings-2-line />Settings
+      </div>
+      <br w-5 h-5>
+      <div btn-secondary flex gap-1.5 h-6 text-center font-550 style="line-height: 1rem;">
+        <button class="btn-tertiary" i-ri-arrow-right-s-line active:i-ri-chevron-down w-5 h-4 />
+        <button class="btn-tertiary" i-ri-file-text-line w-4 h-4 />
+        Getting Started
+      </div>
+      <div btn-secondary flex gap-1.5 h-6 text-center font-550 style="line-height: 1rem;">
+        <button class="btn-tertiary" i-ri-arrow-right-s-line active:i-ri-chevron-down w-5 h-4 />
+        <button class="btn-tertiary" i-twemoji-pushpin w-4 h-4 />
+        Quick Notes
+      </div>
+      <div btn-secondary flex gap-1.5 h-6 text-center font-550 style="line-height: 1rem;">
+        <button class="btn-tertiary" i-ri-arrow-right-s-line active:i-ri-chevron-down w-5 h-4 />
+        <button class="btn-tertiary" i-ri-install-line w-4 h-4 />
+        Task Lists
+      </div>
+      <br w-5 h-5>
+      <div btn-secondary flex gap-2 h-6 text-center font-550 style="line-height: 0.9rem;">
+        <div i-ri-article-line top-0.5 />Templates
+      </div>
+      <div btn-secondary flex gap-2 h-6 text-center font-550 style="line-height: 0.9rem;">
+        <div i-ri-chat-download-line top-0.5 />Import
+      </div>
+      <div btn-secondary flex gap-2 h-6 text-center font-550 style="line-height: 0.9rem;">
+        <div i-ri-code-box-line top-0.5 />Export
+      </div>
     </div>
   </header>
   <header v-else fixed top-0>
@@ -68,6 +104,5 @@ const userStore = useUserStore()
       </div>
     </div>
   </header>
-
   <slot />
 </template>

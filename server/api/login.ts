@@ -2,7 +2,7 @@ import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
-type UserObject {
+interface UserObject {
   name: string
   password: string
 }
@@ -19,9 +19,8 @@ export default defineEventHandler(async (event) => {
     return res
   })
     .catch(async (e) => {
-      console.error(e)
       await prisma.$disconnect()
-      process.exit(1)
+      return e
     })
   return response
 })

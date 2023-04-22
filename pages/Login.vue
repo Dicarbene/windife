@@ -24,8 +24,24 @@ const submit = () => {
     },
   })
 }
-watch(UserStatus.value, async () => {
-  if (UserStatus.value != null)
+const getUerUnit = () => {
+  useLazyFetch('/api/getuserunit', {
+    method: 'POST',
+    body: {
+      name: username.value,
+    },
+    async onResponse({ request, response, options }) {
+      // Process the response data
+      data.value = response._data
+      UserStatus.value = response._data
+      pending.value = false
+      await navigateTo('/user/test')
+    },
+  })
+}
+
+watch(UserStatus, async (val) => {
+  if (val != null)
     await navigateTo('/user/test')
 })
 </script>

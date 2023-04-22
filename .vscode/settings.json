@@ -17,5 +17,6 @@
     "pinia",
     "Windife"
   ],
-  "prisma.fileWatcher": true
+  "prisma.fileWatcher": true,
+  "typescript.tsdk": "node_modules/typescript/lib"
 }
