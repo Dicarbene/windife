@@ -11,10 +11,13 @@
     "attributify",
     "formkit",
     "iconify",
+    "indife",
     "nuxi",
     "nuxt",
     "nuxtjs",
     "pinia",
+    "sonner",
+    "twemoji",
     "Windife"
   ],
   "prisma.fileWatcher": true,

@@ -11,6 +11,9 @@ export default defineNuxtConfig({
     '@formkit/nuxt',
     '@dicarbene/nuxt3-editorjs',
   ],
+  build: {
+    transpile: ['vue-sonner'],
+  },
   experimental: {
     // when using generate, payload js assets included in sw precache manifest
     // but missing on offline, disabling extraction it until fixed

@@ -5,6 +5,9 @@ const styleParent = 'bg-gray-50'
 </script>
 
 <template>
+  <ClientOnly>
+    <Toaster position="top-center" />
+  </ClientOnly>
   <header v-if="userStore != null" fixed top-0 w-58 h-100vh b-r bg-gray-50>
     <button
       relative flex justify-between gap-2 rounded btn-primary hover:bg-gray-200 bg-gray-50 text-black text-center h-10 w-full

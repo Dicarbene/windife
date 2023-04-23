@@ -2,7 +2,7 @@ import {
   defineConfig, presetAttributify, presetIcons, presetUno, presetWebFonts, transformerDirectives,
   transformerVariantGroup,
 } from 'unocss'
-
+import { presetExtra } from 'unocss-preset-extra'
 export default defineConfig({
   presets: [
     presetUno(),
@@ -15,6 +15,7 @@ export default defineConfig({
         sans: 'Inter',
       },
     }),
+    presetExtra(),
   ],
   shortcuts: [
     ['btn-primary', 'pt-6px pb-7px px-14px shadow-sm text-white cursor-pointer rounded bg-button-primary hover:bg-button-primary-hover transition-all text-normal font-sans font-700'],

@@ -14,7 +14,7 @@ const closeModal = () => {
 
 <template>
   <button class="btn-secondary" @click="openModal">
-    <span class="pointer-events-none">{{ message }}</span>
+    <span class="pointer-events-none">{{ props?.message }}</span>
   </button>
   <div
     v-if="show"

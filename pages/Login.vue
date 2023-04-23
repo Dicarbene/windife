@@ -1,13 +1,12 @@
 <script setup>
 import { useAutoAnimate } from '@formkit/auto-animate/vue'
-
 const [RegisterModal] = useAutoAnimate()
 const username = ref('')
 const password = ref('')
-
 const data = ref()
 const pending = ref(true)
 const UserStatus = useUserStore()
+const { $toast } = useNuxtApp()
 const submit = () => {
   useLazyFetch('/api/login', {
     method: 'POST',
@@ -20,6 +19,7 @@ const submit = () => {
       data.value = response._data
       UserStatus.value = response._data
       pending.value = false
+      $toast.success('Login successful')
       await navigateTo('/user/test')
     },
   })
