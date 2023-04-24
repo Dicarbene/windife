@@ -11,22 +11,27 @@ export default defineNuxtConfig({
     '@formkit/nuxt',
     '@dicarbene/nuxt3-editorjs',
   ],
+
   build: {
     transpile: ['vue-sonner'],
   },
+
   experimental: {
     // when using generate, payload js assets included in sw precache manifest
     // but missing on offline, disabling extraction it until fixed
     payloadExtraction: false,
-    reactivityTransform: true,
+    reactivityTransform: false,
     inlineSSRStyles: false,
   },
+
   css: [
     '@unocss/reset/tailwind.css',
   ],
+
   colorMode: {
     classSuffix: '',
   },
+
   nitro: {
     esbuild: {
       options: {
@@ -39,6 +44,7 @@ export default defineNuxtConfig({
       ignore: ['/hi'],
     },
   },
+
   app: {
     head: {
       viewport: 'width=device-width,initial-scale=1',
@@ -55,7 +61,9 @@ export default defineNuxtConfig({
     },
     pageTransition: { name: 'page', mode: 'out-in' },
   },
+
   pwa,
+
   unocss: {
     // presets
     uno: true, // enabled `@unocss/preset-uno`
@@ -66,9 +74,12 @@ export default defineNuxtConfig({
     shortcuts: [],
     rules: [],
   },
+
   vite: {
     optimizeDeps: {
       include: ['@editorjs/editorjs', '@editorjs/header', '@editorjs/list'],
     },
   },
+
+  devtools: true,
 })

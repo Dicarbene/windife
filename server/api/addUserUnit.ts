@@ -4,9 +4,11 @@ const prisma = new PrismaClient()
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
-  const response = await prisma.unit.findMany({
+  const userObj: UserObject = body
+  const response = await prisma.user.findFirst({
     where: {
-      name: body.name,
+      name: userObj.name,
+      password: userObj.password,
     },
   }).then(async (res) => {
     await prisma.$disconnect()

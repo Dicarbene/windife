@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 const props = defineProps({
   message: String,
-  closeEvent: Function,
+  onClose: Function,
 })
 const show = ref(false)
 const openModal = () => {
