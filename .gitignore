@@ -6,4 +6,6 @@ dev-dist
 .nuxt
 .env
 .idea/
-prisma/*.db
+prisma/
+!prisma/schema.prisma
+coverage/

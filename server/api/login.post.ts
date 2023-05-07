@@ -9,19 +9,24 @@ interface UserObject {
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
   const userObj: UserObject = body
-  const response = await prisma.user.create({
-    data: {
+  const response = await prisma.user.findFirst({
+    where: {
       name: userObj.name,
       password: userObj.password,
     },
   }).then(async (res) => {
     await prisma.$disconnect()
+    if (res === null) {
+      throw createError({
+        statusCode: 400,
+        statusMessage: 'password or username is incorrect',
+      })
+    }
     return res
   })
     .catch(async (e) => {
-      console.error(e)
       await prisma.$disconnect()
-      process.exit(1)
+      return e
     })
   return response
 })

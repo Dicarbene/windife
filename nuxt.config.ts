@@ -9,25 +9,12 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     '@vite-pwa/nuxt',
     '@formkit/nuxt',
-    '@dicarbene/nuxt3-editorjs',
+    'nuxt-vitest',
   ],
-
-  build: {
-    transpile: ['vue-sonner'],
-  },
-
-  experimental: {
-    // when using generate, payload js assets included in sw precache manifest
-    // but missing on offline, disabling extraction it until fixed
-    payloadExtraction: false,
-    reactivityTransform: false,
-    inlineSSRStyles: false,
-  },
-
   css: [
     '@unocss/reset/tailwind.css',
   ],
-
+  tranpile: ['vue-sonner', 'vue-editorjs'],
   colorMode: {
     classSuffix: '',
   },
@@ -75,11 +62,11 @@ export default defineNuxtConfig({
     rules: [],
   },
 
-  vite: {
-    optimizeDeps: {
-      include: ['@editorjs/editorjs', '@editorjs/header', '@editorjs/list'],
-    },
+  devtools: {
+    // Enable devtools (default: true)
+    enabled: true,
+    // VS Code Server options
+    vscode: {},
+    // ...other options
   },
-
-  devtools: true,
 })

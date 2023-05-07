@@ -20,7 +20,7 @@ const submit = () => {
       UserStatus.value = response._data
       pending.value = false
       $toast.success('Login successful')
-      await navigateTo('/user/test')
+      await navigateTo('/')
     },
   })
 }

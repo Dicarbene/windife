@@ -1,6 +1,5 @@
 <script setup>
 import { ref } from 'vue'
-import EditorTestVue from '../components/EditorTest.vue'
 const default_data = {
   time: 1660335428612,
   blocks: [
@@ -124,9 +123,6 @@ const userStore = useUserStore()
         better, faster work happens.
       </p>
       <section class="h-100vh my-30 grid grid-cols-2 grid-gap-10" />
-    </main>
-    <main v-else>
-      <EditorTestVue />
     </main>
   </div>
 </template>

@@ -23,4 +23,28 @@ useHead({
   opacity: 0;
   filter: blur(1rem);
 }
+
+h1.ce-header {
+  --at-apply: text-3xl font-bold;
+}
+
+h2.ce-header {
+  --at-apply: text-2xl font-semibold
+}
+
+h3.ce-header {
+  --at-apply: text-xl font-semibold
+}
+
+h4.ce-header {
+  --at-apply: text-lg font-semibold
+}
+
+h5.ce-header {
+  --at-apply: text-base font-semibold
+}
+
+h6.ce-header {
+  --at-apply: text-base font-semibold
+}
 </style>

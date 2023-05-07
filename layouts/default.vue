@@ -8,15 +8,18 @@ const styleParent = 'bg-gray-50'
   <ClientOnly>
     <Toaster position="top-center" />
   </ClientOnly>
-  <header v-if="userStore != null" fixed top-0 w-58 h-100vh b-r bg-gray-50>
+  <header v-if="userStore != null" fixed top-0 w-38 sm:w-15vw h-100vh b-r bg-gray-50>
     <button
-      relative flex justify-between gap-2 rounded btn-primary hover:bg-gray-200 bg-gray-50 text-black text-center h-10 w-full
-      font-600 overflow-auto :style="{ 'background-color': childHover ? 'rgba(229, 231, 235)' : '' }"
+      relative flex justify-between gap-2 rounded btn-primary hover:bg-gray-200 bg-gray-50 text-black text-center
+      h-10 w-full font-600 overflow-auto :style="{ 'background-color': childHover ? 'rgba(229, 231, 235)' : '' }"
     >
       <span rounded bg-gray-300 w-6 h-6 inline-block left-2 text-gray-500>{{ userStore?.name.slice(0, 1).toUpperCase()
       }}</span>{{ userStore?.name }}
       <div inline i-ri-expand-up-down-line w-4 h-6 bg-gray top-1 />
-      <button flex self-end justify-center items-center btn-round w-7 h-7 hover:bg-gray-300 transition-all @mouseover="() => { childHover = true }" @mouseout="() => { childHover = false }">
+      <button
+        flex self-end justify-center items-center btn-round w-7 h-7 hover:bg-gray-300 transition-all
+        @mouseover="() => { childHover = true }" @mouseout="() => { childHover = false }"
+      >
         <div i-ri-edit-box-line />
       </button>
     </button>
@@ -28,11 +31,31 @@ const styleParent = 'bg-gray-50'
       <div btn-secondary flex gap-2 h-6 text-center font-550 style="line-height: 0.9rem;">
         <div i-ri-time-line />Update
       </div>
+      <Modal>
+        <template #icon>
+          <div i-ri-settings-2-line />
+        </template>
+        <template #msg>
+          Settings
+        </template>
+        <template #header>
+          Settings
+        </template>
+        <template #todo>
+          ipsrum aalksdjaslkd
+        </template>
+        <template #closeMessage>
+          Close
+        </template>
+      </Modal>
       <div btn-secondary flex gap-2 h-6 text-center font-550 style="line-height: 0.9rem;">
         <div i-ri-settings-2-line />Settings
       </div>
       <br w-5 h-5>
-      <div btn-secondary flex gap-1.5 h-6 text-center font-550 style="line-height: 1rem;">
+      <div
+        btn-secondary flex gap-1.5 h-6 text-center font-550 style="line-height: 1rem;"
+        @click="navigateTo('/user/test')"
+      >
         <button class="btn-tertiary" i-ri-arrow-right-s-line active:i-ri-chevron-down w-5 h-4 />
         <button class="btn-tertiary" i-ri-file-text-line w-4 h-4 />
         Getting Started

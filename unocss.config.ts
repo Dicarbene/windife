@@ -18,7 +18,7 @@ export default defineConfig({
     presetExtra(),
   ],
   shortcuts: [
-    ['btn-primary', 'pt-6px pb-7px px-14px shadow-sm text-white cursor-pointer rounded bg-button-primary hover:bg-button-primary-hover transition-all text-normal font-sans font-700'],
+    ['btn-primary', 'pt-6px pb-7px px-14px shadow-sm text-white cursor-pointer rounded bg-button-primary hover:bg-button-primary-hover transition-all font-sans font-700'],
     ['btn-round', 'relative transition-all self-center b-rounded-50 b-1 b-gray-200 cursor-pointer'],
     ['btn-secondary', 'px-2.5 py-1 hover:cursor-pointer active:bg-gray-200 hover:bg-gray-100 transition-all rounded font-600 text-sm font-sans'],
     ['btn-tertiary', 'px-1 py-1 hover:cursor-pointer active:bg-gray-300 hover:bg-gray-200 transition-all rounded font-600 text-sm font-sans z-3'],
