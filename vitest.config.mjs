@@ -2,6 +2,8 @@ import { defineVitestConfig } from 'nuxt-vitest/config'
 export default defineVitestConfig({
   // any custom vitest config you require
   test: {
-    environment: 'nuxt',
+    deps: {
+      inline: ['vue-sonner'],
+    },
   },
 })

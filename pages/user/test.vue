@@ -1,8 +1,8 @@
 <script setup>
-import { ref } from 'vue'
 definePageMeta({
   middleware: 'guard',
 })
+
 const default_data = {
   time: 1660335428612,
   blocks: [
@@ -103,10 +103,10 @@ const { $toast } = useNuxtApp()
 const nuxtapp = useNuxtApp()
 const dat = ref(default_data)
 const show = ref(false)
-const save = () => {
-  // console.log(foo)
-}
-
+nuxtapp.hook('page:transition:finish', () => {
+  // console.log('page:transition:finish')
+  show.value = true
+})
 </script>
 
 <template>
@@ -116,10 +116,12 @@ const save = () => {
         <!-- this will be rendered on server side -->
         <p>Loading comments...</p>
       </template>
+      <!--
       <button w-auto h-auto fixed top-50 left-50 z-0>
         show
       </button>
-      <EditorjsClient v-model="dat" fixed z-0 top-10 left-15vw mr-15vw w-95vw />
+      -->
+      <EditorjsClient v-if="show" v-model="dat" fixed z-0 top-10 left-15vw mr-15vw w-95vw />
     </client-only>
   </div>
 </template>
