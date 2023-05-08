@@ -2,13 +2,17 @@
 const userStore = useUserStore()
 const childHover = ref(false)
 const styleParent = 'bg-gray-50'
+const logout = () => {
+  userStore.value = null
+  navigateTo('/')
+}
 </script>
 
 <template>
   <ClientOnly>
     <Toaster position="top-center" />
   </ClientOnly>
-  <header v-if="userStore != null" fixed top-0 w-38 sm:w-15vw h-100vh b-r bg-gray-50>
+  <header v-if="userStore != null" fixed z-auto top-0 w-38 sm:w-15vw h-100vh b-r bg-gray-50>
     <button
       relative flex justify-between gap-2 rounded btn-primary hover:bg-gray-200 bg-gray-50 text-black text-center
       h-10 w-full font-600 overflow-auto :style="{ 'background-color': childHover ? 'rgba(229, 231, 235)' : '' }"
@@ -23,7 +27,9 @@ const styleParent = 'bg-gray-50'
         <div i-ri-edit-box-line />
       </button>
     </button>
-
+    <button btn-secondary fixed top-1 right-1 @click="logout">
+      Log out
+    </button>
     <div class="grid-rows-[repeat(10,1.5rem)]" mt-2 grid gap-0.5 px-2 text-gray-8>
       <div btn-secondary flex gap-2 h-6 text-center font-550 style="line-height: 0.9rem;">
         <div i-ri-search-2-line top-0.5 />Search
@@ -82,7 +88,7 @@ const styleParent = 'bg-gray-50'
       </div>
     </div>
   </header>
-  <header v-else fixed top-0>
+  <header v-else fixed top-0 backdrop-blur>
     <div class="flex flex-row justify-between w-97vw ml-1.5vw mr-1.5vw h-20 font-sans font-544">
       <div class="h-20 w-22 inline-block text-center mr-3 font-italic cursor-pointer">
         <NuxtLink to="/">

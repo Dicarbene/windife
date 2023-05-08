@@ -22,7 +22,7 @@
     "@iconify-json/carbon": "^1.1.15",
     "@iconify-json/ri": "^1.1.8",
     "@iconify-json/twemoji": "^1.1.11",
-    "@nuxt/devtools": "^0.4.5",
+    "@nuxt/devtools": "^0.4.6",
     "@nuxtjs/color-mode": "^3.2.0",
     "@pinia/nuxt": "^0.4.6",
     "@prisma/client": "^4.11.0",

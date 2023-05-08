@@ -105,7 +105,10 @@ const userStore = useUserStore()
 
 <template>
   <div>
-    <main v-if="userStore === null">
+    <div relative>
+      <img absolute src="https://tailwindui.com/img/beams-home@95.jpg">
+    </div>
+    <main v-if="userStore === null" relative z-auto>
       <div class="w-87vw m-auto mt-40 text-center text-7xl font-bold">
         <p>
           Your
@@ -122,7 +125,7 @@ const userStore = useUserStore()
         <br>
         better, faster work happens.
       </p>
-      <section class="h-100vh my-30 grid grid-cols-2 grid-gap-10" />
     </main>
+    <section class="h-100vh my-30 grid grid-cols-2 grid-gap-10" />
   </div>
 </template>

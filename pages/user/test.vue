@@ -121,7 +121,7 @@ nuxtapp.hook('page:transition:finish', () => {
         show
       </button>
       -->
-      <EditorjsClient v-if="show" v-model="dat" fixed z-0 top-10 left-15vw mr-15vw w-95vw />
+      <EditorjsClient v-if="show" v-model="dat" fixed z-0 top-10 left-15vw w-75vw />
     </client-only>
   </div>
 </template>
