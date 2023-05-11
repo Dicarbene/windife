@@ -105,7 +105,7 @@ const userStore = useUserStore()
 
 <template>
   <div>
-    <div relative>
+    <div relative style="top: -5rem;">
       <img absolute src="https://tailwindui.com/img/beams-home@95.jpg">
     </div>
     <main v-if="userStore === null" relative z-auto>
@@ -126,6 +126,9 @@ const userStore = useUserStore()
         better, faster work happens.
       </p>
     </main>
+    <NButton relative z-auto @click="() => { const { $toast } = useNuxtApp(); $toast.message('successful!') }">
+      test
+    </NButton>
     <section class="h-100vh my-30 grid grid-cols-2 grid-gap-10" />
   </div>
 </template>

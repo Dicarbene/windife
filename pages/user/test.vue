@@ -1,8 +1,4 @@
 <script setup>
-definePageMeta({
-  middleware: 'guard',
-})
-
 const default_data = {
   time: 1660335428612,
   blocks: [
@@ -99,7 +95,6 @@ const default_data = {
   ],
   version: '2.25.0',
 }
-const { $toast } = useNuxtApp()
 const nuxtapp = useNuxtApp()
 const dat = ref(default_data)
 const show = ref(false)

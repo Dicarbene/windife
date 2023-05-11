@@ -4,6 +4,8 @@ const childHover = ref(false)
 const styleParent = 'bg-gray-50'
 const logout = () => {
   userStore.value = null
+  const { $toast } = useNuxtApp()
+  $toast.success('Logged out successfully')
   navigateTo('/')
 }
 </script>
@@ -88,7 +90,7 @@ const logout = () => {
       </div>
     </div>
   </header>
-  <header v-else fixed top-0 backdrop-blur>
+  <header v-else fixed top-0 backdrop-blur z-999>
     <div class="flex flex-row justify-between w-97vw ml-1.5vw mr-1.5vw h-20 font-sans font-544">
       <div class="h-20 w-22 inline-block text-center mr-3 font-italic cursor-pointer">
         <NuxtLink to="/">

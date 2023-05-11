@@ -3,6 +3,8 @@ import {
   transformerVariantGroup,
 } from 'unocss'
 import { presetExtra } from 'unocss-preset-extra'
+import { presetHeroPatterns } from '@julr/unocss-preset-heropatterns'
+
 export default defineConfig({
   presets: [
     presetUno(),
@@ -16,6 +18,7 @@ export default defineConfig({
       },
     }),
     presetExtra(),
+    presetHeroPatterns(),
   ],
   shortcuts: [
     ['btn-primary', 'pt-6px pb-7px px-14px shadow-sm text-white cursor-pointer rounded bg-button-primary hover:bg-button-primary-hover transition-all font-sans font-700'],

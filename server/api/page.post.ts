@@ -3,11 +3,12 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 export default defineEventHandler(async (event) => {
-  const query = getQuery(event)
-  const pageId = query.pageid
-  const response = await prisma.page.findFirst({
-    where: {
-      id: pageId?.toString(),
+  const body = await readBody(event)
+  const response = await prisma.page.create({
+    data: {
+      name: body.name,
+      author: body.author,
+      unit: body.unit,
     },
   }).then(async (res) => {
     await prisma.$disconnect()
@@ -16,6 +17,7 @@ export default defineEventHandler(async (event) => {
     .catch(async (e) => {
       console.error(e)
       await prisma.$disconnect()
+      return e
     })
   return response
 })

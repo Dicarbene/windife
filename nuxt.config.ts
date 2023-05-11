@@ -1,4 +1,3 @@
-import { pwa } from './config/pwa'
 import { appDescription } from './constants/index'
 
 export default defineNuxtConfig({
@@ -7,14 +6,14 @@ export default defineNuxtConfig({
     '@unocss/nuxt',
     '@pinia/nuxt',
     '@nuxtjs/color-mode',
-    '@vite-pwa/nuxt',
     '@formkit/nuxt',
     'nuxt-vitest',
+    '@nuxt/devtools-ui-kit',
   ],
   css: [
     '@unocss/reset/tailwind.css',
   ],
-  tranpile: ['vue-sonner', 'vue-editorjs'],
+  tranpile: ['vue-sonner', '@dicarbene/vue-editorjs'],
   colorMode: {
     classSuffix: '',
   },
@@ -49,7 +48,7 @@ export default defineNuxtConfig({
     pageTransition: { name: 'page', mode: 'out-in' },
   },
 
-  pwa,
+  // pwa,
 
   unocss: {
     // presets

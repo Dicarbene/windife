@@ -22,6 +22,9 @@ const submit = () => {
       $toast.success('Login successful')
       await navigateTo('/')
     },
+    onRequestError({ request, options, error }) {
+      $toast.error('Login failed. Please try again.')
+    },
   })
 }
 const getUerUnit = () => {

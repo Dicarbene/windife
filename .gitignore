@@ -9,3 +9,4 @@ dev-dist
 prisma/
 !prisma/schema.prisma
 coverage/
+*.db
