@@ -27,11 +27,13 @@
     "@nuxtjs/color-mode": "^3.2.0",
     "@pinia/nuxt": "^0.4.6",
     "@prisma/client": "^4.11.0",
+    "@types/bcrypt": "^5.0.0",
     "@unocss/nuxt": "^0.51.12",
     "@unocss/preset-attributify": "^0.46.5",
     "@vite-pwa/nuxt": "^0.0.5",
     "@vitest/coverage-c8": "^0.31.0",
     "@vueuse/nuxt": "^9.13.0",
+    "bcrypt": "^5.1.0",
     "eslint": "^8.34.0",
     "nuxt": "^3.4.2",
     "nuxt-vitest": "^0.6.12",
@@ -46,6 +48,7 @@
   "dependencies": {
     "@dicarbene/vue-editorjs": "^0.1.1",
     "@nuxt/devtools-ui-kit": "^0.4.6",
+    "annyang": "^2.6.1",
     "formidable": "^2.1.1",
     "vue-sonner": "^0.3.1"
   }

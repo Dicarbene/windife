@@ -1,6 +1,15 @@
 import { PrismaClient } from '@prisma/client'
-
+import bcrypt from 'bcrypt'
 const prisma = new PrismaClient()
+
+function exclude<User, Key extends keyof User>(
+  user: User,
+  keys: Key[],
+): Omit<User, Key> {
+  for (const key of keys)
+    delete user[key]
+  return user
+}
 
 interface UserObject {
   name: string
@@ -12,8 +21,17 @@ export default defineEventHandler(async (event) => {
   const response = await prisma.user.findFirst({
     where: {
       name: userObj.name,
-      password: userObj.password,
     },
+  }).then(async (user) => {
+    let state = null
+    await bcrypt.compare(userObj.password, user!.password).then((result: boolean) => {
+      if (result === true)
+        return state = 'resolved'
+      else state = 'rejected'
+    })
+    if (state === 'resolved')
+      return user
+    else return null
   }).then(async (res) => {
     await prisma.$disconnect()
     if (res === null) {
@@ -22,11 +40,14 @@ export default defineEventHandler(async (event) => {
         statusMessage: 'password or username is incorrect',
       })
     }
-    return res
+    return exclude(res, ['password'])// 仅返回基本的用户信息，剔除敏感信息如密码
   })
     .catch(async (e) => {
       await prisma.$disconnect()
-      return e
+      throw createError({
+        statusCode: 500,
+        statusMessage: e,
+      })
     })
   return response
 })

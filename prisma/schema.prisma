@@ -8,31 +8,34 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(cuid())
+  id        String   @id @default(uuid())
   name      String   @unique
   password  String   @map(name: "password_hash")
   avatar    String?  @map(name: "avatar_url")
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @updatedAt @map(name: "updated_at")
+  email     String?  
+  verified  Boolean  @default(false)
   Unit      Unit[]
 
   @@map(name: "users")
 }
 
 model Unit {
-  id        String   @id @default(cuid())
+  id        String   @id @default(uuid())
   name      String   @unique
   User      User?    @relation(fields: [user], references: [name])
   user      String   @map(name: "user_name")
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @updatedAt @map(name: "updated_at")
   Page      Page[]
+  option    String
 
   @@map(name: "units")
 }
 
 model Page {
-  id        String   @id @default(cuid())
+  id        String   @id @default(uuid())
   name      String
   image     String?  @map(name: "image_url")
   author    String
@@ -42,4 +45,12 @@ model Page {
   unit      String   @map(name: "unit_name")
 
   @@map(name: "pages")
+}
+
+model Admin {
+  id        String   @id @default(uuid())
+  name      String   @unique
+  password  String   @map(name: "password_hash")
+
+  @@map(name: "admins")
 }

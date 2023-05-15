@@ -5,6 +5,7 @@ const [LoginModal] = useAutoAnimate()
 const username = ref('')
 const password = ref('')
 const passwordValidation = ref('')
+const email = ref('')
 const data = ref()
 const pending = ref(true)
 const UserStatus = useUserStore()
@@ -15,12 +16,14 @@ const submit = () => {
     body: {
       name: username.value,
       password: password.value,
+      email: email.value,
     },
     async onResponse({ request, response, options }) {
       // Process the response data
       data.value = response._data
       UserStatus.value = response._data
       pending.value = false
+      $toast.success('Register successful')
       await navigateTo('/user/test')
     },
   })
@@ -56,6 +59,16 @@ watch(UserStatus.value, async () => {
           validation-label="password confirmation" validation-visibility="dirty" :validation-messages="{
             matches: 'Must include at least one number',
           }"
+        />
+        <FormKit
+          v-model="email"
+          type="email"
+          label-class="font-bold text-lg" help-class="text-sm text-gray"
+          input-class="b-rd-md p-1.5 b-1 b-black" message-class="text-primary"
+          label="Email Address"
+          help="Please enter your email address."
+          validation="email"
+          validation-visibility="live"
         />
       </FormKit>
     </div>
