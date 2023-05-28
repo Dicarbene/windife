@@ -1,31 +1,28 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { onClickOutside, useVModel } from '@vueuse/core'
-
-const props = defineProps<{ modelValue?: boolean }>()
-const emit = defineEmits<{ (...args: any): void }>()
-
-const enabled = useVModel(props, 'modelValue', emit, { passive: true })
-const el = ref<HTMLDivElement>()
-
-onClickOutside(el, () => {
-  enabled.value = false
-})
+interface node {
+  name: string
+  path: string
+}
+const props = defineProps<{
+  list: node[]
+  unit: string
+}>()
+const show = ref(false)
 </script>
 
 <template>
-  <div ref="el" class="relative">
-    <slot name="trigger" :enabled="enabled" @click="enabled = !enabled">
-      <NButton @click="enabled = !enabled">
-        Dropdown
-      </NButton>
-    </slot>
-
+  <div btn-secondary flex gap-1.5 h-6 text-center font-550 style="line-height: 1rem;" @click="show = !show">
+    <div v-if="!show" i-ri-arrow-right-s-line w-5 h-4 />
+    <div v-else i-ri-arrow-down-s-line w-5 h-4 />
+    <slot name="title" />
+  </div>
+  <div v-if="show">
     <div
-      class="absolute z-10 border n-border-base rounded shadow n-transition n-bg-base"
-      :class="[enabled ? 'op-100' : 'op0 pointer-events-none -translate-y-1']"
+      v-for="listNode in list" :key="listNode.name" btn-secondary flex gap-2 h-6 text-center font-550
+      style="line-height: 0.9rem;"
+      @click="navigateTo(`${listNode.path}`)"
     >
-      <slot />
+      <div ml-2 /> {{ listNode.name }}
     </div>
   </div>
 </template>

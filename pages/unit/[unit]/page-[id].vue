@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 const default_data = {
   time: 1660335428612,
   blocks: [
@@ -102,10 +102,21 @@ nuxtapp.hook('page:transition:finish', () => {
   // console.log('page:transition:finish')
   show.value = true
 })
+const exportJSON = () => {
+  function download(href, title) {
+    const a = document.createElement('a')
+    a.setAttribute('href', href)
+    a.setAttribute('download', title)
+    a.click()
+  }
+}
 </script>
 
 <template>
   <div relative z-0 w-auto flex z-auto>
+    <button btn-secondary fixed top-1 right-30 flex gap-2 h-6 text-center style="line-height: 0.9rem;" @click="exportJSON">
+      <div i-ri-javascript-line />Export JSON
+    </button>
     <client-only>
       <template #fallback>
         <!-- this will be rendered on server side -->

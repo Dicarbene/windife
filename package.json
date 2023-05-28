@@ -49,6 +49,7 @@
     "@dicarbene/vue-editorjs": "^0.1.1",
     "@nuxt/devtools-ui-kit": "^0.4.6",
     "annyang": "^2.6.1",
+    "file-saver": "^2.0.5",
     "formidable": "^2.1.1",
     "vue-sonner": "^0.3.1"
   }

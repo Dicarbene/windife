@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 const default_data = {
   time: 1660335428612,
   blocks: [

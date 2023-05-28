@@ -4,12 +4,12 @@ const prisma = new PrismaClient()
 
 export default defineEventHandler(async (event) => {
   const params = getQuery(event)
-  if (params.name === null || params.name === undefined)
-    return new Response('No unit name provided', { status: 400 })
+  if (params.id === null || params.id === undefined)
+    return new Response('No page id provided', { status: 400 })
 
   const response = await prisma.page.findFirstOrThrow({
     where: {
-      name: params.name.toString(),
+      id: params.id?.toString(),
     },
   }).then(async (res) => {
     await prisma.$disconnect()

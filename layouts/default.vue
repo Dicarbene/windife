@@ -26,19 +26,13 @@ const logout = () => {
         flex self-end justify-center items-center btn-round w-7 h-7 hover:bg-gray-300 transition-all
         @mouseover="() => { childHover = true }" @mouseout="() => { childHover = false }"
       >
-        <div i-ri-edit-box-line />
+        <CreateUnitAndPage />
       </button>
     </button>
     <button btn-secondary fixed top-1 right-1 @click="logout">
       Log out
     </button>
     <div class="grid-rows-[repeat(10,1.5rem)]" mt-2 grid gap-0.5 px-2 text-gray-8>
-      <div btn-secondary flex gap-2 h-6 text-center font-550 style="line-height: 0.9rem;">
-        <div i-ri-search-2-line top-0.5 />Search
-      </div>
-      <div btn-secondary flex gap-2 h-6 text-center font-550 style="line-height: 0.9rem;">
-        <div i-ri-time-line />Update
-      </div>
       <Modal>
         <template #icon>
           <div i-ri-settings-2-line />
@@ -56,8 +50,8 @@ const logout = () => {
           Close
         </template>
       </Modal>
-      <div btn-secondary flex gap-2 h-6 text-center font-550 style="line-height: 0.9rem;">
-        <div i-ri-settings-2-line />Settings
+      <div btn-secondary flex gap-2 h-6 text-center font-550 style="line-height: 0.9rem;" @click="navigateTo('/search')">
+        <div i-carbon-search />Search
       </div>
       <br w-5 h-5>
       <div
@@ -78,15 +72,23 @@ const logout = () => {
         <button class="btn-tertiary" i-ri-install-line w-4 h-4 />
         Task Lists
       </div>
-      <br w-5 h-5>
-      <div btn-secondary flex gap-2 h-6 text-center font-550 style="line-height: 0.9rem;">
-        <div i-ri-article-line top-0.5 />Templates
-      </div>
-      <div btn-secondary flex gap-2 h-6 text-center font-550 style="line-height: 0.9rem;">
-        <div i-ri-chat-download-line top-0.5 />Import
-      </div>
-      <div btn-secondary flex gap-2 h-6 text-center font-550 style="line-height: 0.9rem;">
-        <div i-ri-code-box-line top-0.5 />Export
+      <UnitPanel h-50 />
+      <div mt-100>
+        <div btn-secondary flex gap-2 h-6 text-center font-550 style="line-height: 0.9rem;">
+          <div i-ri-article-line top-0.5 />Templates
+        </div>
+        <div
+          btn-secondary flex gap-2 h-6 text-center font-550 style="line-height: 0.9rem;"
+          @click="navigateTo('/import')"
+        >
+          <div i-ri-chat-download-line top-0.5 />Import
+        </div>
+        <div
+          btn-secondary flex gap-2 h-6 text-center font-550 style="line-height: 0.9rem;"
+          @click="navigateTo('/export')"
+        >
+          <div i-ri-code-box-line top-0.5 />Export
+        </div>
       </div>
     </div>
   </header>

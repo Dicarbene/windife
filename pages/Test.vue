@@ -8,9 +8,7 @@ const userObj = {
 <template>
   <div mt-20>
     <Dialog>
-      <template>
-        <div>test</div>
-      </template>
+      <div>test</div>
     </Dialog>
   </div>
 </template>

@@ -13,24 +13,25 @@ const closeModal = () => {
     <slot name="icon" />
     <slot name="msg" />
   </div>
-  <div
-    v-if="show"
-    class="fixed w-full h-full inset-0 flex justify-center items-center pointer-events-auto visible backdrop-blur z-99 transition"
-  >
-    <div class="bg-gray-200 bg-opacity-80 b-rounded form z-100 fixed " style="padding:1em">
-      <h3 class="font-bold text-lg">
-        <slot name="header" />
-      </h3>
-      <p class="py-4">
-        <slot name="todo" />
-      </p>
-      <div class="flex">
-        <button class="btn-secondary" @click="closeModal">
-          <slot name="closeMessage" />
-        </button>
+  <Teleport v-if="show" to="body">
+    <div
+      class="fixed w-full h-full inset-0 flex justify-center items-center pointer-events-auto visible backdrop-blur z-99 transition"
+    >
+      <div class="bg-gray-200 bg-opacity-80 b-rounded form z-100 fixed " style="padding:1em">
+        <h3 class="font-bold text-lg">
+          <slot name="header" />
+        </h3>
+        <p class="py-4">
+          <slot name="todo" />
+        </p>
+        <div class="flex">
+          <button class="btn-secondary" @click="closeModal">
+            <slot name="closeMessage" />
+          </button>
+        </div>
       </div>
     </div>
-  </div>
+  </Teleport>
 </template>
 
 <style scoped>

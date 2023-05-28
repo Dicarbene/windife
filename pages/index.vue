@@ -126,9 +126,6 @@ const userStore = useUserStore()
         better, faster work happens.
       </p>
     </main>
-    <NButton relative z-auto @click="() => { const { $toast } = useNuxtApp(); $toast.message('successful!') }">
-      test
-    </NButton>
     <section class="h-100vh my-30 grid grid-cols-2 grid-gap-10" />
   </div>
 </template>

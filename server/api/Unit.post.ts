@@ -7,7 +7,8 @@ export default defineEventHandler(async (event) => {
   const response = await prisma.unit.create({
     data: {
       name: body.name,
-
+      user: body.user,
+      option: body.option,
     },
   }).then(async (res) => {
     await prisma.$disconnect()
