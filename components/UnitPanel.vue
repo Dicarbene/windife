@@ -21,7 +21,7 @@ if (userStore.value !== null && units.value === null) {
         })
         // units.value[i].pages.push(data.value)
         for (let j = 0; j < data.value.length; ++j)
-          units.value[i].pages.push({ name: data.value[j].name.toString(), path: `/unit/${units.value[i].name}/page-${data.value[j].name.toString()}` })
+          units.value[i].pages.push({ name: data.value[j].name.toString(), path: `/unit/${units.value[i].name}/page-${data.value[j].id.toString()}` })
       }
     },
   })

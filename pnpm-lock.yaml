@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@antfu/eslint-config': ^0.35.2
-  '@dicarbene/vue-editorjs': ^0.1.1
+  '@dicarbene/vue-editorjs': ^0.1.2
   '@formkit/auto-animate': ^1.0.0-beta.6
   '@formkit/nuxt': ^1.0.0-beta.15
   '@iconify-json/carbon': ^1.1.15
@@ -15,6 +15,7 @@ specifiers:
   '@pinia/nuxt': ^0.4.6
   '@prisma/client': ^4.11.0
   '@types/bcrypt': ^5.0.0
+  '@types/file-saver': ^2.0.5
   '@unocss/nuxt': ^0.51.12
   '@unocss/preset-attributify': ^0.46.5
   '@vite-pwa/nuxt': ^0.0.5
@@ -37,7 +38,7 @@ specifiers:
   workbox-window: ^6.5.4
 
 dependencies:
-  '@dicarbene/vue-editorjs': 0.1.1
+  '@dicarbene/vue-editorjs': 0.1.2
   '@nuxt/devtools-ui-kit': 0.4.6_ted437hzxfzonp2s7iaqryo3si
   annyang: 2.6.1
   file-saver: 2.0.5
@@ -57,6 +58,7 @@ devDependencies:
   '@pinia/nuxt': 0.4.9_typescript@4.9.5
   '@prisma/client': 4.13.0_prisma@4.13.0
   '@types/bcrypt': 5.0.0
+  '@types/file-saver': 2.0.5
   '@unocss/nuxt': 0.51.12
   '@unocss/preset-attributify': 0.46.5
   '@vite-pwa/nuxt': 0.0.5_vite-plugin-pwa@0.14.7
@@ -1430,8 +1432,8 @@ packages:
     dependencies:
       mime: 3.0.0
 
-  /@dicarbene/vue-editorjs/0.1.1:
-    resolution: {integrity: sha512-txxiuEcoJOVVcl85P4pAhjNhQFZlOko47zmXrwe/UQzNqNmGXGO2u+Nor3FkB4memdjOhGcAPXMenYOcrLBW7g==}
+  /@dicarbene/vue-editorjs/0.1.2:
+    resolution: {integrity: sha512-vi5bgnoiGGRr4Zy3/xPxIvEETYAKX58rf4X2nFxHPrsY2YL9GfeiS4BX/zn2cngJqYavxx1g/sijod+rfGTyVw==}
     dev: false
 
   /@esbuild-kit/cjs-loader/2.4.2:
@@ -2614,6 +2616,10 @@ packages:
 
   /@types/estree/1.0.1:
     resolution: {integrity: sha512-LG4opVs2ANWZ1TJoKc937iMmNstM/d0ae1vNbnBvBhqCSezgVUOzcLCqbI5elV8Vy6WKwKjaqR+zO9VKirBBCA==}
+
+  /@types/file-saver/2.0.5:
+    resolution: {integrity: sha512-zv9kNf3keYegP5oThGLaPk8E081DFDuwfqjtiTzm6PoxChdJ1raSuADf2YGCVIyrSynLrgc8JWv296s7Q7pQSQ==}
+    dev: true
 
   /@types/istanbul-lib-coverage/2.0.4:
     resolution: {integrity: sha512-z/QT1XN4K4KYuslS23k62yDIDLwLFkzxOuMplDtObz0+y7VqJCaO2o+SPwHCvLFZh7xazvvoor2tA/hPz9ee7g==}

@@ -28,6 +28,7 @@
     "@pinia/nuxt": "^0.4.6",
     "@prisma/client": "^4.11.0",
     "@types/bcrypt": "^5.0.0",
+    "@types/file-saver": "^2.0.5",
     "@unocss/nuxt": "^0.51.12",
     "@unocss/preset-attributify": "^0.46.5",
     "@vite-pwa/nuxt": "^0.0.5",
@@ -46,7 +47,7 @@
     "workbox-window": "^6.5.4"
   },
   "dependencies": {
-    "@dicarbene/vue-editorjs": "^0.1.1",
+    "@dicarbene/vue-editorjs": "^0.1.2",
     "@nuxt/devtools-ui-kit": "^0.4.6",
     "annyang": "^2.6.1",
     "file-saver": "^2.0.5",

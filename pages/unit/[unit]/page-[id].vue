@@ -1,5 +1,8 @@
 <script setup lang="ts">
-const default_data = {
+import { saveAs } from 'file-saver'
+const route = useRoute()
+const pagename = ref('')
+const defaultData = {
   time: 1660335428612,
   blocks: [
     {
@@ -96,33 +99,64 @@ const default_data = {
   version: '2.25.0',
 }
 const nuxtapp = useNuxtApp()
-const dat = ref(default_data)
+const pageData = ref(defaultData)
 const show = ref(false)
 nuxtapp.hook('page:transition:finish', () => {
-  // console.log('page:transition:finish')
+  useFetch('/api/page', {
+    method: 'get',
+    query: {
+      id: route.params.id,
+    },
+    onResponse({ response }) {
+      pagename.value = response._data.name
+      pageData.value = response._data.data
+    },
+  })
   show.value = true
 })
+const options = ref({
+  header: true,
+  paragraph: true,
+  list: true,
+})
+const save = () => {
+  nuxtapp.hook('app:mounted', () => {
+    console.log(`${pageData.value}`)
+  })
+}
 const exportJSON = () => {
-  function download(href, title) {
-    const a = document.createElement('a')
-    a.setAttribute('href', href)
-    a.setAttribute('download', title)
-    a.click()
-  }
+  const file = new File([`${pageData.value}`], `${route.params.unit}-${pagename.value}.json`, { type: 'application/json;charset=utf-8' })
+  saveAs(file)
 }
 </script>
 
 <template>
   <div relative z-0 w-auto flex z-auto>
-    <button btn-secondary fixed top-1 right-30 flex gap-2 h-6 text-center style="line-height: 0.9rem;" @click="exportJSON">
+    <button
+      btn-secondary fixed top-2 right-30 flex gap-2 h-6 text-center style="line-height: 0.9rem;"
+      @click="exportJSON"
+    >
       <div i-ri-javascript-line />Export JSON
+    </button>
+    <button
+      btn-secondary fixed top-2 right-60 flex gap-2 h-6 text-center style="line-height: 0.9rem;"
+      @click="save"
+    >
+      <div i-ri-pages-line />Save Data
+    </button>
+    <button
+      fixed top-2 right-90
+    >
+      <ClientOnly>
+        <SpeechRecognition />
+      </ClientOnly>
     </button>
     <client-only>
       <template #fallback>
         <!-- this will be rendered on server side -->
         <p>Loading comments...</p>
       </template>
-      <EditorjsClient v-if="show" v-model="dat" absolute z-0 top-10 left-15vw w-75vw />
+      <EditorjsClient v-if="show" v-model:doc-data="pageData" v-model:optionsValue="options" v-model:changeAPI="save" v-model:saveAPI="save" absolute z-0 top-10 left-15vw w-75vw />
     </client-only>
   </div>
 </template>
