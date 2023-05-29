@@ -10,16 +10,13 @@
 
 - extendable editor: A rich-text editor can be used with multiple tools you customize. Default support: headers, list, code, raw html, 
 
-- Data visualization powered by Echarts.js
-
-- ChatGPT tool and speech recognition
+- speech recognition
 
 - Web, Desktop, Mobile. Use it anywhere you want to.
 
-
 - Client-side & Server-side rendering. [💚 Nuxt 3](https://nuxt.com/) You can host by your own or build it with electron. 
 
-- [Pocketbase](https://sqlite.com/) - Using pocketbase to utilize the data flexibility of sqlite & migrate your dat a to everywhere!
+- [sqlite](https://sqlite.com/) - Using pocketbase to utilize the data flexibility of sqlite & migrate your dat a to everywhere!
 
 - server all module. 你可以将从数据库服务，到后端，到前端，全分离部署
 
