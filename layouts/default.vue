@@ -14,7 +14,7 @@ const logout = () => {
   <ClientOnly>
     <Toaster position="top-center" />
   </ClientOnly>
-  <header v-if="userStore != null" fixed z-auto top-0 w-38 sm:w-15vw h-100vh b-r bg-gray-50>
+  <header v-if="userStore != null" md:visible fixed z-auto top-0 w-38 sm:w-15vw h-100vh b-r bg-gray-50>
     <button
       relative flex justify-between gap-2 rounded btn-primary hover:bg-gray-200 bg-gray-50 text-black text-center
       h-10 w-full font-600 overflow-auto :style="{ 'background-color': childHover ? 'rgba(229, 231, 235)' : '' }"
@@ -103,7 +103,7 @@ const logout = () => {
       </div>
 
       <div class="flex flex-1 h-33px my-auto justify-between w-auto m-3">
-        <div id="left" class="flex my-auto">
+        <div id="left" invisible md:visible class="flex my-auto">
           <button class="btn-secondary">
             <NuxtLink to="/docs">
               Docs

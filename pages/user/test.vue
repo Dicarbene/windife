@@ -102,6 +102,11 @@ nuxtapp.hook('page:transition:finish', () => {
   // console.log('page:transition:finish')
   show.value = true
 })
+const options = ref({
+  header: true,
+  paragraph: true,
+  list: true,
+})
 </script>
 
 <template>
@@ -111,7 +116,7 @@ nuxtapp.hook('page:transition:finish', () => {
         <!-- this will be rendered on server side -->
         <p>Loading comments...</p>
       </template>
-      <EditorjsClient v-if="show" v-model="dat" absolute z-0 top-10 left-15vw w-75vw />
+      <EditorjsClient v-if="show" v-model:doc-data="dat" v-model:optionsValue="options" absolute z-0 top-10 left-15vw w-75vw />
     </client-only>
   </div>
 </template>

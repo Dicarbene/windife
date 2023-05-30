@@ -22,6 +22,7 @@ nuxtApp.hook('app:mounted', () => {
   })
   annyang.addCallback('resultMatch', (userSaid: string, commandText, phrases) => {
     result.value = userSaid
+    console.log(userSaid, commandText, phrases)
   })
 })
 </script>

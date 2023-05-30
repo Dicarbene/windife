@@ -47,9 +47,8 @@ const createPage = async () => {
     },
   })
 }
-const uOption = ref({})
 const createUnit = () => {
-  uOption.value = {}
+  const uOption: any = {}
   for (let i = 0; i < unitOption.value.length; ++i)
     uOption[unitOption.value[i]] = true
   useFetch('/api/unit', {

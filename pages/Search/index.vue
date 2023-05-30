@@ -1,16 +1,28 @@
 <script lang="ts" setup>
 const input = ref('')
 const show = ref(false)
-const result = ref([{ id: 1, name: 'test' }, { id: 2, name: 'test2 with lions' }])
-const search = async () => {
-  await useFetch('/api/searchPage', {
+const userStore = useUserStore()
+interface page {
+  name: string
+  id: string
+  unit: string
+}
+const result = ref<any>([])
+const search = async (param: string) => {
+  await useFetch('/api/pageSearch', {
     method: 'POST',
     body: {
-      name: input.value,
-      user: useUserStore().value,
+      user: userStore.value?.name,
     },
     async onResponse({ request, response, options }) {
       // Process the response data
+      const allpage = response._data
+      result.value = []
+      // result.value = allpage
+      for (let i = 0; i < allpage.length; ++i) {
+        if (!allpage[i].name.search(param))
+          result.value.push({ name: allpage[i].name, id: allpage[i].id, unit: allpage[i].unit })
+      }
       show.value = true
     },
   })
@@ -28,12 +40,12 @@ const search = async () => {
             border="solid b-[4px]" bg="gray-300 focus:gray-100"
           >
         </div>
-        <button h-10 btn-primary text-center @click="search">
+        <button h-10 btn-primary text-center @click="search(input)">
           Search
         </button>
       </div>
       <div v-if="show">
-        <div v-for="page in result" :key="page.id" flex gap-2 text-center h-10 w-90 bg-gray-100 btn-secondary>
+        <div v-for="page in result" :key="page.id" flex gap-2 text-center h-10 w-90 bg-gray-100 btn-secondary @click="navigateTo(`/unit/${page.unit}/page-${page.id}`)">
           <div i-ri-file-list-3-line w-6 h-10 />{{ page.name }}
         </div>
       </div>

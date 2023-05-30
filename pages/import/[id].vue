@@ -1,5 +1,32 @@
 <script setup lang="ts">
+const route = useRoute()
 const input = ref('')
+const pageData = ref(default_data)
+useFetch('/api/page', {
+  method: 'get',
+  query: {
+    id: route.params.id,
+  },
+  onResponse({ response }) {
+    pagename.value = response._data.name
+    pageData.value = JSON.parse(response._data.data)
+  },
+})
+const importdata = (val: string) => {
+  useFetch('/api/page', {
+    method: 'put',
+    body: {
+      id: route.params.id,
+      data: val,
+    },
+    onResponse({ response }) {
+      $toast.success('page data saved successfully')
+    },
+    onRequestError({ response }) {
+      $toast.error('page data save failed')
+    },
+  })
+}
 </script>
 
 <template>
@@ -14,7 +41,7 @@ const input = ref('')
             Page: <span text-teal>test1</span>
           </button>
         </div>
-        <textarea id="story" name="story" cols="50" rows="25" b-1 b-black rounded>
+        <textarea id="story" v-model="input" name="story" cols="50" rows="25" b-1 b-black rounded>
   blocks: [
     {
       id: 'MnGi61oxdF',

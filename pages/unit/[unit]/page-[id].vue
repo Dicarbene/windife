@@ -2,7 +2,7 @@
 import { saveAs } from 'file-saver'
 const route = useRoute()
 const pagename = ref('')
-const defaultData = {
+const default_data = {
   time: 1660335428612,
   blocks: [
     {
@@ -98,20 +98,21 @@ const defaultData = {
   ],
   version: '2.25.0',
 }
+const pageData = ref(default_data)
+useFetch('/api/page', {
+  method: 'get',
+  query: {
+    id: route.params.id,
+  },
+  onResponse({ response }) {
+    pagename.value = response._data.name
+    pageData.value = JSON.parse(response._data.data)
+  },
+})
 const nuxtapp = useNuxtApp()
-const pageData = ref(defaultData)
+const { $toast } = useNuxtApp()
 const show = ref(false)
 nuxtapp.hook('page:transition:finish', () => {
-  useFetch('/api/page', {
-    method: 'get',
-    query: {
-      id: route.params.id,
-    },
-    onResponse({ response }) {
-      pagename.value = response._data.name
-      pageData.value = response._data.data
-    },
-  })
   show.value = true
 })
 const options = ref({
@@ -120,12 +121,22 @@ const options = ref({
   list: true,
 })
 const save = () => {
-  nuxtapp.hook('app:mounted', () => {
-    console.log(`${pageData.value}`)
+  useFetch('/api/page', {
+    method: 'put',
+    body: {
+      id: route.params.id,
+      data: JSON.stringify(pageData.value),
+    },
+    onResponse({ response }) {
+      $toast.success('page data saved successfully')
+    },
+    onRequestError({ response }) {
+      $toast.error('page data save failed')
+    },
   })
 }
 const exportJSON = () => {
-  const file = new File([`${pageData.value}`], `${route.params.unit}-${pagename.value}.json`, { type: 'application/json;charset=utf-8' })
+  const file = new File([`${JSON.stringify(pageData.value)}`], `${route.params.unit}-${pagename.value}.json`, { type: 'application/json;charset=utf-8' })
   saveAs(file)
 }
 </script>
@@ -145,7 +156,13 @@ const exportJSON = () => {
       <div i-ri-pages-line />Save Data
     </button>
     <button
-      fixed top-2 right-90
+      btn-secondary fixed top-2 right-90 flex gap-2 h-6 text-center style="line-height: 0.9rem;"
+      @click="navigateTo(`/import/${route.params.id}`)"
+    >
+      `import Data`
+    </button>
+    <button
+      fixed top-2 right-120
     >
       <ClientOnly>
         <SpeechRecognition />
@@ -156,7 +173,7 @@ const exportJSON = () => {
         <!-- this will be rendered on server side -->
         <p>Loading comments...</p>
       </template>
-      <EditorjsClient v-if="show" v-model:doc-data="pageData" v-model:optionsValue="options" v-model:changeAPI="save" v-model:saveAPI="save" absolute z-0 top-10 left-15vw w-75vw />
+      <EditorjsClient v-if="show" v-model:doc-data="pageData" v-model:optionsValue="options" v-model:changeAPI="save" v-model:saveAPI="save" absolute z-0 top-10 left-15vw w-75vw @update:docData="(val) => { pageData = val }" />
     </client-only>
   </div>
 </template>
